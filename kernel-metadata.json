@@ -1,0 +1,11 @@
+{
+  "id": "subhan1122/flux-auto-generator-v2",
+  "title": "Flux Auto Generator V2",
+  "code_file": "kaggle.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": []
+}
