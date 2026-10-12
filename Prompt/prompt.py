@@ -1,4 +1,5 @@
 import os
+import json
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
@@ -33,12 +34,33 @@ def enhance_prompt_for_flux(dummy_prompt: str) -> str:
     return response.text.strip()
 
 if __name__ == "__main__":
-    # Test with a simple dummy prompt
-    dummy_input = "a cyberpunk cat wearing sunglasses"
+    # Path to prompt.json inside the Prompt folder
+    json_path = "Prompt/prompt.json"
     
-    print(f"Original Dummy Prompt: {dummy_input}\n")
-    print("Enhancing with Gemini for FLUX.1...")
-    
-    enhanced = enhance_prompt_for_flux(dummy_input)
-    
-    print(f"\nEnhanced FLUX Prompt:\n{enhanced}")
+    if not os.path.exists(json_path):
+        print(f"Error: {json_path} not found!")
+    else:
+        # 1. Load the original prompt from prompt.json
+        with open(json_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            
+        original_prompt = data.get("prompt", "")
+        
+        if not original_prompt:
+            print("Error: No 'prompt' found in prompt.json!")
+        else:
+            print(f"Original Prompt: {original_prompt}\n")
+            print("Enhancing with Gemini for FLUX.1...")
+            
+            # 2. Enhance the prompt using Gemini
+            enhanced = enhance_prompt_for_flux(original_prompt)
+            print(f"\nEnhanced FLUX Prompt:\n{enhanced}")
+            
+            # 3. Update the data dictionary with the final enhanced prompt
+            data["prompt"] = enhanced
+            
+            # 4. Save it BACK into Prompt/prompt.json (Overwriting it)
+            with open(json_path, "w", encoding="utf-8") as outfile:
+                json.dump(data, outfile, indent=4)
+                
+            print(f"\nSuccessfully updated {json_path} with the final enhanced prompt!")
