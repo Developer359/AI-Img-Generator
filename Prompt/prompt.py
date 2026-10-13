@@ -10,21 +10,21 @@ load_dotenv()
 # Initialize the official Google GenAI client
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-def enhance_prompt_for_flux(dummy_prompt: str) -> str:
+def enhance_prompt_for_dreamshaper(dummy_prompt: str) -> str:
     """
-    Takes a simple dummy prompt and uses Gemini to craft a rich, 
-    highly detailed prompt optimized specifically for FLUX.1.
+    Takes a simple dummy prompt and uses Gemini to craft a sharp, 
+    concise, and high-impact prompt optimized specifically for DreamShaper XL Turbo.
     """
     system_instruction = (
-        "You are an expert AI prompt engineer specializing in FLUX.1. "
-        "Your job is to take a simple, short user prompt and expand it into a rich, descriptive, "
-        "photorealistic prompt. Focus heavily on lighting, textures, cinematic composition, camera details, "
-        "and rich environment descriptions. Do not add conversational filler; output only the enhanced prompt text."
+        "You are an expert AI prompt engineer specializing in DreamShaper XL Turbo and SDXL models. "
+        "Your job is to take a simple user prompt and expand it into a concise, punchy, highly effective prompt "
+        "optimized for fast step generation. Focus on key visual elements, dramatic lighting, style, and sharp details. "
+        "Keep it concise—avoid overly long, wordy paragraphs. Output only the enhanced prompt text with no conversational filler."
     )
 
     response = client.models.generate_content(
         model="gemini-2.5-flash",
-        contents=f"Enhance this prompt for FLUX.1: {dummy_prompt}",
+        contents=f"Enhance this prompt for DreamShaper XL Turbo: {dummy_prompt}",
         config=types.GenerateContentConfig(
             system_instruction=system_instruction,
             temperature=0.7,
@@ -50,11 +50,11 @@ if __name__ == "__main__":
             print("Error: No 'prompt' found in prompt.json!")
         else:
             print(f"Original Prompt: {original_prompt}\n")
-            print("Enhancing with Gemini for FLUX.1...")
+            print("Enhancing with Gemini for DreamShaper XL Turbo...")
             
             # 2. Enhance the prompt using Gemini
-            enhanced = enhance_prompt_for_flux(original_prompt)
-            print(f"\nEnhanced FLUX Prompt:\n{enhanced}")
+            enhanced = enhance_prompt_for_dreamshaper(original_prompt)
+            print(f"\nEnhanced DreamShaper Prompt:\n{enhanced}")
             
             # 3. Update the data dictionary with the final enhanced prompt
             data["prompt"] = enhanced
