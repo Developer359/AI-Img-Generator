@@ -9,7 +9,7 @@ torch.cuda.empty_cache()
 gc.collect()
 
 # <<PROMPT_START>> auto-injected by Prompt/prompt.py - do not edit manually
-CURRENT_PROMPT = """An ancient overgrown stone temple hidden inside a misty ethereal forest at dusk, giant glowing crystal lanterns suspended from ancient oak trees. Cascading waterfalls flowing into a mirror-like turquoise lake, luminescent flora and floating fireflies illuminating the dark mossy ground. Dramatic cinematic atmospheric lighting, soft golden twilight rays breaking through dense canopy mist, lush details, hyper-realistic texture, wide-angle landscape, high contrast, dark fantasy aesthetics."""
+CURRENT_PROMPT = """A lone astronaut standing on the surface of an alien ocean planet at twilight, two moons rising, bioluminescent waves, cinematic wide-angle, 8k."""
 # <<PROMPT_END>>
 
 if not CURRENT_PROMPT.strip():
