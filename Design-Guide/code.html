@@ -1,0 +1,106 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CREATIVE STUDIO AI - Image Generation Studio</title>
+<!-- Tailwind CSS CDN with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            midnight: '#0B0D14',
+            surface: {
+              card: '#161922',
+              input: '#1C212D',
+              border: 'rgba(255, 255, 255, 0.08)',
+              active: '#232938'
+            },
+            accent: {
+              purple: '#8434E7',
+              hover: '#9549f5',
+              glow: 'rgba(132, 52, 231, 0.35)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-scrollbars">
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0D14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #272C3D;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3B425B;
+    }
+  </style>
+<style data-purpose="canvas-patterns">
+    /* Subtle atmospheric radial glow */
+    .bg-ambient-radial {
+      background: radial-gradient(circle at 50% 15%, rgba(132, 52, 231, 0.07) 0%, transparent 60%);
+    }
+  </style>
+</head>
+<body class="h-full bg-[#090B10] text-slate-200 font-sans flex flex-col overflow-x-hidden selection:bg-purple-600 selection:text-white">
+<!-- BEGIN: MainHeader -->
+<header class="w-full h-16 border-b border-white/[0.08] bg-[#0E1118]/80 backdrop-blur-md px-6 flex items-center justify-between z-20 shrink-0"><div class="flex items-center space-x-4"><div class="flex items-center space-x-2.5"><div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600/80 to-indigo-500/80 p-[1px] flex items-center justify-center shadow-lg shadow-purple-600/20"><div class="w-full h-full bg-[#0D1017] rounded-[11px] flex items-center justify-center"><span class="material-symbols-outlined text-purple-400 text-lg">auto_awesome</span></div></div><div class="flex items-baseline space-x-1.5"><span class="text-sm font-semibold tracking-tight text-white">Studio</span><span class="text-xs font-medium text-slate-400">AI</span></div></div><div class="hidden md:flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs text-slate-300 hover:border-white/20 transition cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span class="font-medium text-slate-200">Model: v3.2 Ultra</span><span class="material-symbols-outlined text-xs text-slate-400">expand_more</span></div></div><div class="flex items-center space-x-3"><div class="flex items-center px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs space-x-2 backdrop-blur-sm"><div class="flex items-center space-x-1.5"><span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span><span class="font-medium text-slate-200">50 Credits</span></div><span class="text-slate-600">•</span><button class="text-[11px] font-medium text-purple-400 hover:text-purple-300 transition">Upgrade</button></div><button class="w-8 h-8 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] flex items-center justify-center text-slate-300 hover:text-white transition text-xs font-semibold" title="User Profile">AI</button></div></header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 flex p-4 md:p-6 lg:p-8 max-w-[1720px] w-full mx-auto gap-6 bg-ambient-radial">
+<!-- Control Panel (Left Column) -->
+<aside class="w-full md:w-[410px] lg:w-[440px] shrink-0 flex flex-col justify-between bg-[#121620] border border-white/[0.08] rounded-3xl p-6 shadow-2xl backdrop-blur-sm"><div class="space-y-5 flex-1 flex flex-col"><div class="space-y-2.5"><div class="flex items-center justify-between"><label class="text-xs font-semibold uppercase tracking-wider text-slate-300 flex items-center space-x-1.5" for="prompt-input"><span class="material-symbols-outlined text-sm text-purple-400">edit_note</span><span class="">Prompt</span></label><div class="flex items-center space-x-2"><button type="button" class="text-[11px] text-slate-400 hover:text-slate-200 transition flex items-center space-x-1"><span class="material-symbols-outlined text-xs">casino</span><span class="">Surprise Me</span></button></div></div><div class="relative rounded-2xl bg-gradient-to-b from-white/[0.04] to-transparent p-[1px]"><div class="bg-[#0F131D] rounded-2xl p-3 border border-white/[0.08] focus-within:border-purple-500/80 focus-within:ring-1 focus-within:ring-purple-500/40 transition"><textarea class="w-full bg-transparent border-0 p-0 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0 resize-none leading-relaxed min-h-[110px]" id="prompt-input" placeholder="A cinematic shot of a neon cyberpunk monolith in dense misty rain, dramatic rim lighting, photorealistic 8k..."></textarea><div class="pt-2.5 mt-2 border-t border-white/[0.05] flex items-center justify-between text-[11px] text-slate-500"><span class="">0 / 1000 characters</span><div class="flex items-center space-x-2"><button type="button" class="hover:text-slate-300 transition flex items-center space-x-1"><span class="material-symbols-outlined text-xs">tune</span><span class="">Negative</span></button></div></div></div></div></div><div class="space-y-2.5"><div class="flex items-center justify-between"><label class="text-xs font-semibold uppercase tracking-wider text-slate-300 flex items-center space-x-1.5"><span class="material-symbols-outlined text-sm text-purple-400">aspect_ratio</span><span class="">Aspect Ratio</span></label><span class="text-[11px] text-slate-500">Select canvas shape</span></div><div class="grid grid-cols-3 gap-2" role="radiogroup" aria-label="Aspect Ratio Selection"><button type="button" role="radio" aria-checked="true" class="group relative flex flex-col items-center justify-center py-3 px-2 rounded-xl border border-purple-500/60 bg-purple-950/20 shadow-[0_0_15px_-3px_rgba(168,85,247,0.2)] hover:border-purple-400 transition-all text-center"><div class="w-8 h-8 mb-2 flex items-center justify-center"><div class="w-5 h-5 rounded-[4px] bg-purple-400/25 border-2 border-purple-400"></div></div><span class="text-xs font-medium text-slate-100">1:1 Square</span><span class="text-[10px] text-purple-300/80 font-normal mt-0.5">1024 × 1024</span></button><button type="button" role="radio" aria-checked="false" class="group relative flex flex-col items-center justify-center py-3 px-2 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all text-center"><div class="w-8 h-8 mb-2 flex items-center justify-center"><div class="w-7 h-4 rounded-[3px] bg-slate-600/30 border border-slate-500/40 group-hover:border-slate-400 transition"></div></div><span class="text-xs font-medium text-slate-400 group-hover:text-slate-200 transition">16:9 Wide</span><span class="text-[10px] text-slate-500 mt-0.5">1920 × 1080</span></button><button type="button" role="radio" aria-checked="false" class="group relative flex flex-col items-center justify-center py-3 px-2 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all text-center"><div class="w-8 h-8 mb-2 flex items-center justify-center"><div class="w-6 h-4.5 rounded-[3px] bg-slate-600/30 border border-slate-500/40 group-hover:border-slate-400 transition"></div></div><span class="text-xs font-medium text-slate-400 group-hover:text-slate-200 transition">4:3 Classic</span><span class="text-[10px] text-slate-500 mt-0.5">1440 × 1080</span></button><button type="button" role="radio" aria-checked="false" class="group relative flex flex-col items-center justify-center py-3 px-2 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all text-center"><div class="w-8 h-8 mb-2 flex items-center justify-center"><div class="w-4 h-6 rounded-[3px] bg-slate-600/30 border border-slate-500/40 group-hover:border-slate-400 transition"></div></div><span class="text-xs font-medium text-slate-400 group-hover:text-slate-200 transition">3:4 Portrait</span><span class="text-[10px] text-slate-500 mt-0.5">1080 × 1440</span></button><button type="button" role="radio" aria-checked="false" class="group relative flex flex-col items-center justify-center py-3 px-2 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all text-center"><div class="w-8 h-8 mb-2 flex items-center justify-center"><div class="w-3.5 h-7 rounded-[3px] bg-slate-600/30 border border-slate-500/40 group-hover:border-slate-400 transition"></div></div><span class="text-xs font-medium text-slate-400 group-hover:text-slate-200 transition">9:16 Story</span><span class="text-[10px] text-slate-500 mt-0.5">1080 × 1920</span></button><button type="button" role="radio" aria-checked="false" class="group relative flex flex-col items-center justify-center py-3 px-2 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all text-center"><div class="w-8 h-8 mb-2 flex items-center justify-center"><div class="w-7 h-3 rounded-[3px] bg-slate-600/30 border border-slate-500/40 group-hover:border-slate-400 transition"></div></div><span class="text-xs font-medium text-slate-400 group-hover:text-slate-200 transition">21:9 Cinema</span><span class="text-[10px] text-slate-500 mt-0.5">2560 × 1080</span></button></div></div><div class="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] text-xs text-slate-400"><div class="flex items-center space-x-2"><span class="material-symbols-outlined text-sm text-slate-400">hd</span><span class="">High Resolution Upscale</span></div><span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-purple-950/40 text-purple-300 border border-purple-800/40">Auto</span></div></div><div class="pt-4 mt-4 border-t border-white/[0.06]"><button id="btn-generate" type="button" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:from-purple-500 hover:to-indigo-500 active:scale-[0.99] text-white font-medium text-sm shadow-lg shadow-purple-600/25 border border-purple-400/30 hover:border-purple-300/50 transition-all duration-200 flex items-center justify-between group"><span class="flex items-center space-x-2"><span class="material-symbols-outlined text-lg">auto_awesome</span><span class="tracking-wide">Generate</span></span><span class="flex items-center space-x-1.5 px-2 py-0.5 rounded-md bg-black/30 border border-white/10 text-[11px] text-purple-200/90 font-sans group-hover:bg-black/40 transition"><span class="">⌘</span><span class="">Enter</span></span></button></div></aside>
+<!-- Canvas Preview Panel (Right Column) -->
+<section class="flex-1 bg-[#121620] border border-white/[0.08] rounded-3xl relative flex flex-col items-center justify-center p-8 overflow-hidden shadow-2xl"><div class="flex flex-col items-center justify-center text-center max-w-sm px-4 select-none"><div class="relative w-28 h-28 md:w-32 md:h-32 mb-6 flex items-center justify-center"><div class="absolute inset-0 bg-purple-600/10 rounded-full blur-2xl"></div><div class="relative w-20 h-20 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md flex items-center justify-center shadow-2xl"><span class="material-symbols-outlined text-4xl text-purple-400/80 animate-pulse">view_in_ar</span></div></div><h3 class="text-base md:text-lg font-semibold text-white tracking-tight mb-2">Ready to create</h3><p class="text-xs md:text-sm text-slate-400 font-normal leading-relaxed mb-6">Describe your vision in the prompt field and choose your preferred aspect ratio to generate artwork.</p><div class="flex items-center space-x-2 text-xs text-slate-500"><span class="px-2.5 py-1 rounded-full bg-white/[0.03] border border-white/[0.06]">High Resolution</span><span class="px-2.5 py-1 rounded-full bg-white/[0.03] border border-white/[0.06]">Sub-second Latency</span></div></div><div class="absolute bottom-5 right-6 flex items-center space-x-1.5 bg-[#121622]/90 backdrop-blur-md border border-white/[0.08] rounded-xl px-2.5 py-1.5 text-xs text-slate-400 shadow-xl"><button class="px-2 py-0.5 rounded hover:bg-white/[0.05] hover:text-slate-200 transition font-medium text-[11px]" title="Reset Zoom">Fit Screen</button><span class="text-slate-700">|</span><button class="px-1.5 py-0.5 rounded hover:bg-white/[0.05] hover:text-slate-200 transition flex items-center justify-center" title="Fullscreen"><span class="material-symbols-outlined text-sm">fullscreen</span></button><button class="px-1.5 py-0.5 rounded hover:bg-white/[0.05] hover:text-slate-200 transition flex items-center justify-center" title="Settings"><span class="material-symbols-outlined text-sm">tune</span></button></div></section>
+</main>
+<!-- END: MainContent -->
+<script data-purpose="aspect-ratio-toggle">
+    // Interactive aspect ratio card toggle behavior
+    const ratioButtons = document.querySelectorAll('[role="radio"]');
+    ratioButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        ratioButtons.forEach(b => {
+          b.setAttribute('aria-checked', 'false');
+          b.className = 'group flex flex-col items-center justify-center p-3 rounded-2xl border border-white/[0.08] bg-[#161B25] hover:border-white/20 hover:bg-white/[0.04] transition-all text-center';
+          const iconShape = b.querySelector('div > div');
+          if (iconShape) {
+            iconShape.className = iconShape.className.replace('bg-purple-300/20 border-purple-400', 'bg-slate-600/40 border-slate-500/60');
+          }
+          const label = b.querySelector('span');
+          if (label) {
+            label.className = 'text-xs font-normal text-slate-400 group-hover:text-slate-300 transition';
+          }
+        });
+
+        // Set active state on clicked card
+        btn.setAttribute('aria-checked', 'true');
+        btn.className = 'group flex flex-col items-center justify-center p-3 rounded-2xl border-2 border-purple-600 bg-purple-950/20 hover:bg-purple-950/30 transition-all text-center';
+        const activeIconShape = btn.querySelector('div > div');
+        if (activeIconShape) {
+          activeIconShape.className = activeIconShape.className.replace('bg-slate-600/40 border-slate-500/60', 'bg-purple-300/20 border-purple-400');
+        }
+        const activeLabel = btn.querySelector('span');
+        if (activeLabel) {
+          activeLabel.className = 'text-xs font-medium text-slate-200';
+        }
+      });
+    });
+  </script>
+
+
+</body></html>
