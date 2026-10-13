@@ -1,66 +1,61 @@
 import os
 import json
-from google import genai
-from google.genai import types
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
-
-# Initialize the official Google GenAI client
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-
-def enhance_prompt_for_dreamshaper(dummy_prompt: str) -> str:
-    """
-    Takes a simple dummy prompt and uses Gemini to craft a sharp, 
-    concise, and high-impact prompt optimized specifically for DreamShaper XL Turbo.
-    """
-    system_instruction = (
-        "You are an expert AI prompt engineer specializing in DreamShaper XL Turbo and SDXL models. "
-        "Your job is to take a simple user prompt and expand it into a concise, punchy, highly effective prompt "
-        "optimized for fast step generation. Focus on key visual elements, dramatic lighting, style, and sharp details. "
-        "Keep it concise—avoid overly long, wordy paragraphs. Output only the enhanced prompt text with no conversational filler."
-    )
-
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=f"Enhance this prompt for DreamShaper XL Turbo: {dummy_prompt}",
-        config=types.GenerateContentConfig(
-            system_instruction=system_instruction,
-            temperature=0.7,
-        ),
-    )
-    
-    return response.text.strip()
 
 if __name__ == "__main__":
-    # Path to prompt.json inside the Prompt folder
-    json_path = "Prompt/prompt.json"
-    
+    # Resolve paths — works from any directory
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.dirname(base_dir)  # one level up from Prompt/
+
+    # Load prompt from Prompt/prompt.json (same folder as this script)
+    json_path = os.path.join(base_dir, "prompt.json")
     if not os.path.exists(json_path):
-        print(f"Error: {json_path} not found!")
-    else:
-        # 1. Load the original prompt from prompt.json
-        with open(json_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            
-        original_prompt = data.get("prompt", "")
-        
-        if not original_prompt:
-            print("Error: No 'prompt' found in prompt.json!")
+        # Fallback: check project root
+        json_path = os.path.join(root_dir, "prompt.json")
+    if not os.path.exists(json_path):
+        raise FileNotFoundError(f"prompt.json not found! Expected at: {os.path.join(base_dir, 'prompt.json')}")
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    manual_prompt = data.get("prompt", "").strip()
+    if not manual_prompt:
+        raise ValueError("The 'prompt' field in prompt.json is empty!")
+
+    print(f"Loaded prompt:\n-> {manual_prompt}")
+
+    # Inject prompt directly into Kaggle/kaggle.py (between special markers)
+    kaggle_script = os.path.join(root_dir, "Kaggle", "kaggle.py")
+    if not os.path.exists(kaggle_script):
+        raise FileNotFoundError(f"kaggle.py not found at: {kaggle_script}")
+
+    with open(kaggle_script, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    # Replace the CURRENT_PROMPT line — simple line-by-line approach (works with \r\n and \n)
+    lines = content.splitlines(keepends=True)
+    new_lines = []
+    in_block = False
+    replaced = False
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("# <<PROMPT_START>>"):
+            in_block = True
+            new_lines.append(line)
+        elif in_block and stripped.startswith("CURRENT_PROMPT"):
+            # Preserve the original line ending
+            ending = "\r\n" if line.endswith("\r\n") else "\n"
+            new_lines.append(f'CURRENT_PROMPT = """{manual_prompt}"""{ending}')
+            in_block = False
+            replaced = True
         else:
-            print(f"Original Prompt: {original_prompt}\n")
-            print("Enhancing with Gemini for DreamShaper XL Turbo...")
-            
-            # 2. Enhance the prompt using Gemini
-            enhanced = enhance_prompt_for_dreamshaper(original_prompt)
-            print(f"\nEnhanced DreamShaper Prompt:\n{enhanced}")
-            
-            # 3. Update the data dictionary with the final enhanced prompt
-            data["prompt"] = enhanced
-            
-            # 4. Save it BACK into Prompt/prompt.json (Overwriting it)
-            with open(json_path, "w", encoding="utf-8") as outfile:
-                json.dump(data, outfile, indent=4)
-                
-            print(f"\nSuccessfully updated {json_path} with the final enhanced prompt!")
+            new_lines.append(line)
+    new_content = "".join(new_lines)
+
+    if not replaced:
+        raise RuntimeError("Could not find <<PROMPT_START>> marker or CURRENT_PROMPT line in kaggle.py!")
+
+    with open(kaggle_script, "w", encoding="utf-8") as f:
+        f.write(new_content)
+
+    print(f"SUCCESS: Prompt injected into {kaggle_script}")
+    print("Now run: python Kaggle/trigger.py")
