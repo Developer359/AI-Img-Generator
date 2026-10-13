@@ -9,7 +9,7 @@ torch.cuda.empty_cache()
 gc.collect()
 
 # <<PROMPT_START>> auto-injected by Prompt/prompt.py - do not edit manually
-CURRENT_PROMPT = """A lone astronaut standing on the surface of an alien ocean planet at twilight, two moons rising, bioluminescent waves, cinematic wide-angle, 8k."""
+CURRENT_PROMPT = """A Victorian steampunk airship harbor at night, dozens of brass vessels, gas lamp glow, fog."""
 # <<PROMPT_END>>
 
 if not CURRENT_PROMPT.strip():
