@@ -1,4 +1,4 @@
-﻿"""
+"""
 Studio AI - Backend Server
 Run with: python app.py
 
@@ -33,7 +33,14 @@ app = Flask(__name__, static_folder=DESIGN_DIR)
 # Allow the website on Vercel to call this backend
 try:
     from flask_cors import CORS
-    CORS(app)
+    CORS(app, origins=[
+        "https://ai-img-generator-beta.vercel.app",
+        "https://ai-img-generator-ccnazik3m-msubhan8661-6906s-projects.vercel.app",
+        r"https://.*\.vercel\.app",   # all Vercel preview URLs
+        "http://localhost:5000",
+        "http://localhost:3000",
+        "http://127.0.0.1:5000",
+    ])
 except ImportError:
     print("[WARN] flask-cors not installed (pip install flask-cors). Needed when the page is hosted elsewhere.")
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -321,6 +321,9 @@
 </main>
 
 <script>
+  // ── Backend URL ───────────────────────────────────────────────────────
+  const BASE_URL = 'https://ai-img-generator-production-5eed.up.railway.app';
+
   // ── Aspect ratio toggle ───────────────────────────────────────────────
   let selectedRatio = '1:1 Square';
   const ratioButtons = document.querySelectorAll('.ratio-btn');
@@ -354,7 +357,7 @@
   // ── Surprise Me ───────────────────────────────────────────────────────
   document.getElementById('btn-surprise').addEventListener('click', async () => {
     try {
-      const res = await fetch('/surprise');
+      const res = await fetch(`${BASE_URL}/surprise`);
       const data = await res.json();
       const ta = document.getElementById('prompt-input');
       ta.value = data.prompt;
@@ -398,10 +401,13 @@
     document.getElementById('canvas-placeholder').style.display = 'none';
     const wrap = document.getElementById('canvas-image-wrap');
     const img  = document.getElementById('canvas-image');
-    img.src = src + (src.includes('?') ? '&' : '?') + 't=' + Date.now();
+    // If src is a relative path (starts with /), prepend BASE_URL so it works from Vercel
+    const absoluteSrc = src.startsWith('http') ? src : BASE_URL + src;
+    img.src = absoluteSrc + (absoluteSrc.includes('?') ? '&' : '?') + 't=' + Date.now();
     const dl = document.getElementById('btn-download');
     if (dl) {
-      dl.href = '/download/' + encodeURIComponent(src.split('?')[0].split('/').pop());
+      const filename = src.split('?')[0].split('/').pop();
+      dl.href = `${BASE_URL}/download/` + encodeURIComponent(filename);
       dl.style.opacity = '1';
       dl.style.pointerEvents = 'auto';
     }
@@ -424,7 +430,7 @@
     if (pollTimer) return;
     pollTimer = setInterval(async () => {
       try {
-        const data = await fetch('/status').then(r => r.json());
+        const data = await fetch(`${BASE_URL}/status`).then(r => r.json());
 
         if (data.status === 'running') {
           showPlaceholder('Pushing to Kaggle...', data.message, 'cloud_upload', true, true);
@@ -440,7 +446,7 @@
           } else {
             // Fallback: check /last-image
             try {
-              const id = await fetch('/last-image').then(r => r.json());
+              const id = await fetch(`${BASE_URL}/last-image`).then(r => r.json());
               if (id.image) { showImage(id.image); return; }
             } catch(_) {}
             showPlaceholder('Image ready — click Fetch', 'Press the Fetch Image button in the toolbar.', 'download', false, false);
@@ -463,7 +469,7 @@
     btn.style.pointerEvents = 'none';
     showPlaceholder('Fetching from Kaggle…', 'Downloading the latest kernel output...', 'download', true, true);
     try {
-      await fetch('/fetch-now', { method: 'POST' });
+      await fetch(`${BASE_URL}/fetch-now`, { method: 'POST' });
       // Start polling to catch when download finishes
       if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
       startPolling();
@@ -495,7 +501,7 @@
     showPlaceholder('Submitting job…', 'Writing prompt and triggering Kaggle GPU...', 'cloud_upload', true, true);
 
     try {
-      const res  = await fetch('/generate', {
+      const res  = await fetch(`${BASE_URL}/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt, ratio: selectedRatio })
@@ -509,7 +515,7 @@
         resetGenerateBtn();
       }
     } catch(e) {
-      showPlaceholder('Connection Error', 'Cannot reach local server. Is app.py running?', 'wifi_off', false, false);
+      showPlaceholder('Connection Error', 'Cannot reach Railway backend. Check server status.', 'wifi_off', false, false);
       resetGenerateBtn();
     }
   }
