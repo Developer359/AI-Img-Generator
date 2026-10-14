@@ -1,0 +1,34 @@
+[{"stream_name":"stderr","time":58.396977671,"data":"[transformers] `Siglip2ImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Siglip2ImageProcessor` instead.\n"}
+,{"stream_name":"stdout","time":58.73178638,"data":"Loaded prompt:\n"}
+,{"stream_name":"stdout","time":58.731823789,"data":"-\u003e A Victorian steampunk airship harbor at night, dozens of brass vessels, gas lamp glow, fog.\n"}
+,{"stream_name":"stdout","time":58.731829036,"data":"Loading DreamShaper XL Turbo model...\n"}
+,{"stream_name":"stderr","time":58.732035926,"data":"/usr/local/lib/python3.13/dist-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.\n"}
+,{"stream_name":"stderr","time":58.732102003,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":59.055046409,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":59.055105217,"data":"WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":59.075511783,"data":"/usr/local/lib/python3.13/dist-packages/diffusers/utils/deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.\n"}
+,{"stream_name":"stderr","time":59.07554057,"data":"  deprecate(\"torch_dtype\", \"1.0.0\", _TORCH_DTYPE_DEPRECATION_MESSAGE)\n"}
+,{"stream_name":"stderr","time":79.374676556,"data":"\rFetching 18 files:   0%|          | 0/18 [00:00\u003c?, ?it/s]\rFetching 18 files:  11%|█         | 2/18 [00:00\u003c00:01, 14.88it/s]\rFetching 18 files:  33%|███▎      | 6/18 [00:00\u003c00:00, 27.40it/s]\rFetching 18 files:  67%|██████▋   | 12/18 [00:00\u003c00:00, 39.40it/s]\rFetching 18 files:  94%|█████████▍| 17/18 [00:07\u003c00:00,  1.64it/s]\rFetching 18 files:  94%|█████████▍| 17/18 [00:19\u003c00:00,  1.64it/s]\rFetching 18 files: 100%|██████████| 18/18 [00:19\u003c00:00,  1.89s/it]\rFetching 18 files: 100%|██████████| 18/18 [00:19\u003c00:00,  1.10s/it]\n"}
+,{"stream_name":"stderr","time":96.966776012,"data":"\rLoading pipeline components...:   0%|          | 0/7 [00:00\u003c?, ?it/s]\rLoading pipeline components...:  14%|█▍        | 1/7 [00:17\u003c01:43, 17.25s/it]\rLoading pipeline components...:  43%|████▎     | 3/7 [00:17\u003c00:18,  4.55s/it]\n"}
+,{"stream_name":"stderr","time":97.043974037,"data":"\rLoading weights:   0%|          | 0/196 [00:00\u003c?, ?it/s]\u001b[A\rLoading weights: 100%|██████████| 196/196 [00:00\u003c00:00, 2551.31it/s]\n"}
+,{"stream_name":"stderr","time":97.174769817,"data":"\rLoading pipeline components...:  57%|█████▋    | 4/7 [00:17\u003c00:09,  3.05s/it]\n"}
+,{"stream_name":"stderr","time":97.2774997,"data":"\rLoading weights:   0%|          | 0/517 [00:00\u003c?, ?it/s]\u001b[A\n"}
+,{"stream_name":"stderr","time":97.378862716,"data":"\rLoading weights:  49%|████▊     | 252/517 [00:00\u003c00:00, 2488.46it/s]\u001b[A\n"}
+,{"stream_name":"stderr","time":97.38441014,"data":"\rLoading weights:  97%|█████████▋| 501/517 [00:00\u003c00:00, 2469.07it/s]\u001b[A\rLoading weights: 100%|██████████| 517/517 [00:00\u003c00:00, 2483.46it/s]\n"}
+,{"stream_name":"stderr","time":97.712362766,"data":"\rLoading pipeline components...:  71%|███████▏  | 5/7 [00:18\u003c00:04,  2.15s/it]\rLoading pipeline components...: 100%|██████████| 7/7 [00:18\u003c00:00,  1.18s/it]\rLoading pipeline components...: 100%|██████████| 7/7 [00:18\u003c00:00,  2.62s/it]\n"}
+,{"stream_name":"stdout","time":100.045508017,"data":"Starting image generation...\n"}
+,{"stream_name":"stderr","time":108.181834167,"data":"\r  0%|          | 0/6 [00:00\u003c?, ?it/s]\r 17%|█▋        | 1/6 [00:02\u003c00:12,  2.55s/it]\r 33%|███▎      | 2/6 [00:03\u003c00:05,  1.43s/it]\r 50%|█████     | 3/6 [00:04\u003c00:03,  1.22s/it]\r 67%|██████▋   | 4/6 [00:05\u003c00:02,  1.12s/it]\r 83%|████████▎ | 5/6 [00:06\u003c00:01,  1.06s/it]\r100%|██████████| 6/6 [00:07\u003c00:00,  1.03s/it]\r100%|██████████| 6/6 [00:07\u003c00:00,  1.18s/it]\n"}
+,{"stream_name":"stderr","time":108.183516932,"data":"/usr/local/lib/python3.13/dist-packages/diffusers/pipelines/stable_diffusion_xl/pipeline_stable_diffusion_xl.py:748: FutureWarning: `upcast_vae` is deprecated and will be removed in version 1.0.0. `upcast_vae` is deprecated. Please use `pipe.vae.to(torch.float32)`. For more details, please refer to: https://github.com/huggingface/diffusers/pull/12619#issue-3606633695.\n"}
+,{"stream_name":"stderr","time":108.183544564,"data":"  deprecate(\n"}
+,{"stream_name":"stderr","time":108.18368741,"data":"There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.\n"}
+,{"stream_name":"stderr","time":108.559457636,"data":"There are modules in AutoencoderKL that should be kept in float32: []. Casting directly with `to()` can lead to inconsistent results; set `torch_dtype` in `from_pretrained()` instead to keep these modules in float32.\n"}
+,{"stream_name":"stdout","time":111.108770053,"data":"Image generated successfully!\n"}
+,{"stream_name":"stdout","time":111.108813145,"data":"Zipping output images...\n"}
+,{"stream_name":"stdout","time":111.111759112,"data":"Batch complete!\n"}
+,{"stream_name":"stderr","time":120.201608589,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":120.201661515,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":120.548412454,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":120.548464067,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":121.331320596,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":122.612976552,"data":"[NbConvertApp] Writing 278475 bytes to __results__.html\n"}
+]
