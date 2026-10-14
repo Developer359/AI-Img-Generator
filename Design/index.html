@@ -290,9 +290,19 @@
     </div>
 
     <!-- Generated image state (hidden until image is ready) -->
-    <div id="canvas-image-wrap" style="display:none;width:100%;height:100%;position:relative;">
+    <div id="canvas-image-wrap" style="display:none;width:100%;height:100%;position:relative;flex-direction:column;padding:14px;gap:12px;">
       <img id="canvas-image" src="" alt="Generated image"
-        style="width:100%;height:100%;object-fit:contain;border-radius:14px;" />
+        onerror="this.onerror=null; showPlaceholder('Image failed to load', 'Press Fetch Image to try again.', 'broken_image', false, false);"
+        style="flex:1;min-height:0;width:100%;object-fit:contain;border-radius:14px;" />
+      <!-- Download button (below the image) -->
+      <div style="display:flex;justify-content:center;flex-shrink:0;">
+        <a id="btn-download" href="#" download
+          class="flex items-center space-x-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium border border-purple-400/30 shadow-lg shadow-purple-600/25 transition-all"
+          style="padding:9px 20px;font-size:12px;text-decoration:none;">
+          <span class="material-symbols-outlined" style="font-size:16px;">download</span>
+          <span>Download Image</span>
+        </a>
+      </div>
     </div>
 
     <!-- Bottom toolbar -->
@@ -389,8 +399,10 @@
     document.getElementById('canvas-placeholder').style.display = 'none';
     const wrap = document.getElementById('canvas-image-wrap');
     const img  = document.getElementById('canvas-image');
-    img.src = src + '?t=' + Date.now();
-    wrap.style.display = 'block';
+    img.src = src + (src.includes('?') ? '&' : '?') + 't=' + Date.now();
+    const dl = document.getElementById('btn-download');
+    if (dl) dl.href = '/download/' + encodeURIComponent(src.split('?')[0].split('/').pop());
+    wrap.style.display = 'flex';
   }
 
   function resetGenerateBtn() {
