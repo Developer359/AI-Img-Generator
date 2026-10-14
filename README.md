@@ -69,6 +69,8 @@ This project uses **Kaggle's free GPU tier** (T4 / P100, 30 hrs/week) to run Sta
 
 ## 🏗 Architecture
 
+<img width="1153" height="535" alt="image" src="https://github.com/user-attachments/assets/c8c46f91-74e8-447c-b79f-396931b88266" />
+
 ```mermaid
 flowchart TD
     A[Browser\nDesign/index.html] -->|POST /generate| B[Flask Backend\nmain.py — Railway]
