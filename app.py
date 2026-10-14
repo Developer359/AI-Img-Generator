@@ -30,6 +30,13 @@ SUPABASE_BUCKET = os.getenv("SUPABASE_BUCKET", "Img Store")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 app = Flask(__name__, static_folder=DESIGN_DIR)
 
+# Allow the website on Vercel to call this backend
+try:
+    from flask_cors import CORS
+    CORS(app)
+except ImportError:
+    print("[WARN] flask-cors not installed (pip install flask-cors). Needed when the page is hosted elsewhere.")
+
 RATIO_SIZES = {
     "1:1 Square":  (1024, 1024),
     "16:9 Wide":   (1920, 1080),
@@ -124,6 +131,9 @@ IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp")
 # ─────────────────────────────────────────────────────────────
 
 SUB_ENV = dict(os.environ, PYTHONUTF8="1", PYTHONIOENCODING="utf-8")
+
+KAGGLE_BIN = shutil.which("kaggle") or os.path.join(
+    os.path.dirname(sys.executable), "kaggle.exe" if os.name == "nt" else "kaggle")
 
 
 def run_cmd(cmd, timeout=None):
@@ -243,7 +253,7 @@ def inject_size(width, height):
 def cli_kernel_status():
     """Return 'complete' | 'running' | 'queued' | 'error' | 'unknown'"""
     try:
-        r = run_cmd(["kaggle", "kernels", "status", KERNEL_ID], timeout=30)
+        r = run_cmd([KAGGLE_BIN, "kernels", "status", KERNEL_ID], timeout=30)
         out = (r.stdout + r.stderr).lower()
         print(f"[STATUS] {out.strip()[:120]}")
         if "complete" in out: return "complete"
@@ -274,7 +284,7 @@ def cli_download_output():
             shutil.rmtree(tmp, ignore_errors=True)
             os.makedirs(tmp, exist_ok=True)
 
-            r = run_cmd(["kaggle", "kernels", "output", KERNEL_ID, "-p", tmp], timeout=180)
+            r = run_cmd([KAGGLE_BIN, "kernels", "output", KERNEL_ID, "-p", tmp], timeout=180)
             print(f"[DOWNLOAD try {attempt}] code={r.returncode}")
             print(f"[DOWNLOAD stdout] {r.stdout.strip()[:300]}")
             print(f"[DOWNLOAD stderr] {r.stderr.strip()[:300]}")

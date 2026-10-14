@@ -12,12 +12,12 @@ torch.cuda.empty_cache()
 gc.collect()
 
 # <<PROMPT_START>> auto-injected by Prompt/prompt.py - do not edit manually
-CURRENT_PROMPT = """A lone astronaut on an alien ocean planet at twilight, two moons rising, bioluminescent waves, cinematic 8k."""
+CURRENT_PROMPT = """A futuristic floating city above the clouds at golden hour, glass towers, aerial gardens, volumetric lighting."""
 # <<PROMPT_END>>
 
 # <<SIZE_START>> auto-injected by app.py - do not edit manually
-TARGET_WIDTH = 1080
-TARGET_HEIGHT = 1920
+TARGET_WIDTH = 2560
+TARGET_HEIGHT = 1080
 # <<SIZE_END>>
 
 if not CURRENT_PROMPT.strip():
