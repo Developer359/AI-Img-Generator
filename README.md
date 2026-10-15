@@ -41,7 +41,7 @@
 
 Studio AI solves one problem: **AI image generation is expensive.** Tools like DALL-E, Midjourney, and Stability AI all cost money.
 
-This project uses **Kaggle's free GPU tier** (T4 / P100, 30 hrs/week) to run Stable Diffusion XL in the cloud. You type a prompt in the browser, click Generate, and the system:
+This project uses **Kaggle's free GPU tier** (T4 / P100, 30 hrs/week) to run Stable Diffusion XL in cloud. You type a prompt in the browser, click Generate, and the system:
 
 1. Injects your prompt & resolution into the Kaggle script
 2. Pushes it to Kaggle and triggers a GPU kernel
