@@ -39,7 +39,7 @@
 
 ## 🌟 Overview
 
-Studio AI solves one problem: **AI image generation is the expensive tool.** Tools like DALL-E, Midjourney, and Stability AI all cost money.
+Studio AI solves one problem: **AI image generation is the expensive tool.** Tools like the DALL-E, Midjourney, and Stability AI all cost money.
 
 This project uses **Kaggle's free GPU tier** (T4 / P100, 30 hrs/week) to run Stable Diffusion XL in cloud. You type a prompt in the browser, click Generate, and the system:
 
