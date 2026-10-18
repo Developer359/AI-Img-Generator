@@ -55,7 +55,7 @@ This project uses **Kaggle's free GPU tier** (T4 / P100, 30 hrs/week) to run Sta
 
 | Feature | Details |
 |---|---|
-| 🆓 Free GPU | Kaggle Tesla T4, 30 hrs/week at zero cost |
+| 🆓 Free GPU | Kaggle Tesla T4 provide 30 hrs/week at zero cost |
 | 🎨 Studio UI | Dark-mode, glassmorphism, smooth animations |
 | 📐 6 Aspect Ratios | Square, Wide, Classic, Portrait, Story, Cinema |
 | 🎲 Surprise Me | 10 built-in creative prompt suggestions |
