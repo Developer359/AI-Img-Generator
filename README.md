@@ -2,7 +2,7 @@
 
 # 🎨 Studio AI — Free GPU Image Generator
 
-**Generate high-resolution AI images using free Kaggle GPUs — no paid API needed.**
+**Generate high-resolution AI images using free Kaggle GPUs — not the paid API needed.**
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-Backend-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
